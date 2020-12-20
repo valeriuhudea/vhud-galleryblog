@@ -1,0 +1,5 @@
+{% for album in latest_albums %}
+    <li>
+        <a href="{{ album.get_absolute_url }}">{{ album.title }}</a>
+    </li>
+{% endfor %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="body-container text-center" style="padding-top:20px">
+    <div class="container text-center">
+	<div class="col-xl login">
+      <div class="jumbotron" style="padding-bottom: 10%;padding-left: 26%; padding-right: 26%">
+	  <a class="navbar-brand" href="{% url "home" %}"><img src="{% static "anitafrancuart/css/aflogo.png" %}" alt="logo" style="padding-bottom: 15px"></a>
+        <form method="post" autocomplete="off" action="{% url "login_page" %}" style="display: grid">		
+            {% csrf_token %}
+
+            {{ form | crispy }}
+
+			<div class="form-actions">
+				<button class="btn-ho effect01" type="submit" style="margin-left: -50%;margin-top: 2px">Login</button>
+				<input type="hidden" name="next" value="{{ next }}">
+			</div>	
+        </form>
+	  </div>
+	  </div>
+	 </div> 
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

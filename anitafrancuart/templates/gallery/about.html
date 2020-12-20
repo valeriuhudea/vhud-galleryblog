@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="body-container text-center">
+    <div class="container text-center">
+    <div class="col-xl aboutme">
+      <div class="jumbotron vertical-center">
+
+		  <div class="section-title">
+			<h2>About</h2>
+			<p>Who I am and what I'm about</p>
+		  </div>
+
+		  <div class="row">
+			<div class="col-lg-6">
+			  <img src="{% static "anitafrancuart/assets/img/me.jpg" %}" class="img-fluid" alt="">
+			</div>
+			<div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+			  <h3 style="font-family: Raleway, sans-serif;text-align: left;color: #3e77ff">Artist &amp; Designer</h3>
+			  <p class="font-italic" style="text-align:left;color: #fff">
+				 “Art evokes the mystery without which the world would not exist.” 
+			  </p>
+			  <div class="row">
+				<div class="col-lg-11">
+				  <ul class="about-me-l" style="padding-left: 5px">
+					<li style="color: #fff"><i class="fa fa-chevron-right" style="color: #3e77ff"></i> <strong>Birthday:</strong> 3 Mar 1991</li>
+					<li style="color: #fff"><i class="fa fa-chevron-right" style="color: #3e77ff"></i> <strong>City:</strong> Brasov, Romania</li>
+					<li style="color: #fff"><i class="fa fa-chevron-right" style="color: #3e77ff"></i> <strong>Age:</strong> 29</li>
+					<li style="color: #fff"><i class="fa fa-chevron-right" style="color: #3e77ff"></i> <strong>Freelance:</strong> Available</li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+			  <p style="text-align:left; color: #fff;margin-left: 10px;margin-top: 10px">
+			   Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis. Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque.
+			  </p>		
+		  </div>
+		  
+		<div class="counts container">
+
+		  <div class="row" style="padding-top: 20px;">
+
+			<div class="col-lg-3 col-md-6">
+			  <div class="count-box">
+				<i class=""><span style="color: #fff" data-toggle="counter-up">243</span>
+				</i>
+				<p style="color: #3e77ff; font-size: 20px;"><strong>Art Work</strong></p>
+				
+			  </div>
+			</div>
+
+			<div class="col-lg-4 col-md-6 mt-5 mt-md-0">
+			  <div class="count-box">
+				<i class=""><span style="color: #fff" data-toggle="counter-up">131</span></i>				
+				<p style="color: #3e77ff; font-size: 20px;"><strong>Projects</strong></p>
+			  </div>
+			</div>
+
+		  </div>
+
+		</div>
+
+    </div>
+
+<!-- End Counts -->
+
+  <!--/section--><!-- End About Section -->
+        </div>
+    </div>
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

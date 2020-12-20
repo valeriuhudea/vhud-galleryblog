@@ -1,0 +1,115 @@
+{% load static %}
+{% load blog_tags %}
+{% load active_link_tags %}
+
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url "home" %}"><img src="{% static "anitafrancuart/css/aflogo.png" %}" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #fff;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+		{% if user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto" style="padding-left: 18%;padding-right: auto">			
+                <li class="nav-item {% if request.path == '/' %}activated{% endif %}">
+					<a class="nav-link " href="{% url "home" %}">
+					   <button class="btn-ho effect01" type="button" title="Home">Home</button>
+                    </a>
+                </li>
+                <li class="nav-item {% active_link 'about_page' 'activated' %}">
+                    <a class="nav-link" href="{% url "about_page" %}">
+					   <button class="btn-ho effect01" type="button" title="About">About</button>
+					</a>
+                </li>
+                <li class="nav-item {% active_link 'gallery:gallery_page' 'activated' %}">
+                    <a class="nav-link" href="{% url "gallery:gallery_page" %}">
+					   <button class="btn-ho effect01" type="button" title="Gallery">Gallery</button>
+					</a>
+                </li>				
+                <li class="nav-item {% active_link 'contactView' 'activated' %}">
+                    <a class="nav-link" href="{% url "contactView" %}">
+					   <button class="btn-ho effect01" type="button" title="Contact">Contact</button>
+					</a>
+                </li>
+                <li class="nav-item {% active_link 'blog:post_list' 'activated' %}">
+                    <a class="nav-link" href="{% url "blog:post_list" %}">
+					   <button class="btn-ho effect01" type="button" title="Blog">Blog</button>
+					</a>
+                </li>
+			 </ul>
+			   <ul class="navbar-nav ml-auto" style="padding-left: 18%">
+                <li class="nav-item {% active_link 'logout_page' 'activated' %}">
+                    <a class="nav-link" href="{% url "logout_page" %}">
+					   <button class="btn-ho effect01" type="button" title="Logout" style="color: #0141ff">Logout</button>
+					</a>
+                </li>				
+				
+				{% if request.user.is_staff %}
+				<li class="nav-item">
+                    <a class="nav-link" href="/admin">
+					<button class="btn-ho effect01" type="button" title="Admin panel" style="color: red">Admin</button>
+
+					</a>
+                </li>
+			   </ul>	
+				{% endif %}
+            
+        </div>
+		{% else %}
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav mx-auto" style="padding-left: 18%;padding-right: auto; ">			
+                <li class="nav-item {% if request.path == '/' %}activated{% endif %}">
+					<a class="nav-link" href="{% url 'home' %}">
+					   <button class="btn-ho effect01" type="button" title="Home">Home</button>
+
+                    </a>
+                </li>	
+                <li class="nav-item {% active_link 'about_page' 'activated' %}">
+                    <a class="nav-link" href="{% url 'about_page' %}">
+					   <button class="btn-ho effect01 " type="button" title="About">About</button>
+
+					</a>	
+                <li class="nav-item {% active_link 'gallery:gallery_page' 'activated' %}">
+                    <a class="nav-link" href="{% url 'gallery:gallery_page' %}">
+					   <button class="btn-ho effect01" type="button" title="Gallery">Gallery</button>
+
+					</a>
+                </li>	
+                <li class="nav-item {% active_link 'contactView' 'activated' %}">
+                    <a class="nav-link" href="{% url 'contactView' %}">
+					   <button class="btn-ho effect01" type="button" title="Contact">Contact</button>
+
+					</a>
+                </li>	
+                <li class="nav-item {% active_link 'blog:post_list' 'activated' %}">
+                    <a class="nav-link" href="{% url 'blog:post_list' %}">
+					   <button class="btn-ho effect01" type="button" title="Blog">Blog</button>
+
+					</a>
+                </li>
+               </ul>
+			   
+			   <!-- Login & Registration -->
+               <ul class="navbar-nav ml-auto" style="padding-left: 18%">	
+                <li class="nav-item {% active_link 'login_page' 'activated' %}">
+                    <a class="nav-link" href="{% url 'login_page' %}">
+					   <button class="btn-ho effect01" type="button" title="Login">Login</button>
+
+					</a>
+                </li>	
+                <li class="nav-item {% active_link 'register_page' 'activated' %}">
+                    <a class="nav-link" href="{% url 'register_page' %}">
+					   <button class="btn-ho effect01" style="padding-left: 4px" type="button" title="Register">Register</button>
+
+					</a>
+                </li>
+			   </ul>
+        {% endif %}
+		    
+			
+    </div> <!-- End collapse navbar-collapse  -->
+	
+	</div> <!-- End container-fluid -->
+</nav>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="body-container text-center gallery-main-div" style="padding-top: 20px;">
+   <div class="container text-center">
+    <div class="col-xl">
+     <div class="jumbotron vertical-center" style="padding: 3px;">	  
+	  
+			<section id="portfolio" class="portfolio">
+				<div class="container" style="height: auto">
+
+				  <div class="section-title" style="padding-top: 30px;">
+					<h2>Share</h2>
+					<p>Blog Post Share</p>
+				  </div>
+				{% if sent %}
+					<h1>E-mail sent successfully</h1>
+					<p>"{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}</p>
+				{% else %}
+					<h1>Share "{{ post.title }}" by e-mail</h1>
+					<form method="post" style="display: grid;">
+						{{ form.as_p }}
+						{% csrf_token %}
+
+					<div class="form-actions">
+						<button class="btn-ho effect01" type="submit" style="margin-left: -75%;margin-top: 2px">Share &#9993;</button>
+					</div
+					</form>
+				{% endif %}
+                </div>
+            </section>
+		</div>
+	 </div>
+	</div>
+</div>			
+{% endblock %}

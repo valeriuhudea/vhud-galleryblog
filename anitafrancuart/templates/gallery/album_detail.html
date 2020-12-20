@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load thumbnail %}
+{% load blog_tags %}
+{% load gallery_tags %}
+
+{% block title %}{{ album.title }}{% endblock %}
+
+{% block content %}
+<div class="body-container text-center gallery-main-div" style="padding-top: 20px;">
+   <div class="container text-center">
+    <div class="col-xl">
+     <div class="jumbotron vertical-center" style="padding: 3px;">
+
+	<section id="portfolio" class="portfolio">
+		<div class="container">
+		
+			  <div class="section-title">
+				<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Portofolio Album</h2>
+				<p style="text-align:left">{{ album.title }}</p>
+			  </div>
+
+			  <!-- Date/Time -->
+			  <p style="color: #fff; text-align: left">Published on {{ album.created }}</p>
+
+			  <hr>
+			  <!-- Album Preview Image -->
+			  <div style="display: inline-flex;">
+			  {% if album.thumbnail %}
+			  
+				  {% thumbnail album.thumbnail "x280" as albmimg %}
+				  <img class="img-fluid-gal-thumb" src="{{ albmimg.url }}" alt="{{ album.title }}">
+				  {% endthumbnail %}
+
+				  {% else %}
+				  <img src="" class="img-fluid-gal" alt="{{ album.title }}">
+		      {% endif %}
+			  
+			  <hr>
+			  
+			  <!-- Album Description -->
+			  <div class="ablum-desc" style="text-align: left; padding: 15px; margin: 0; font-size: 28px;">
+			  {% if album.description %}
+			  <h4 style="color: #8ae4ff; font-family: Oleo Script;">Details: </h4>
+			  <p class="album_p_desc">{{ album.description }}</p>
+			  {% else %}
+			  <h4 style="color: #8ae4ff; font-family: Oleo Script;">No details available</h4>
+			  {% endif %}
+			  <!--p style="font-family: Poppins, sans-serif;font-style: italic; color: #1ab1ec;">Description: </p-->
+			  <!--p style="margin: 0">{{ album.description|markdown }}</p-->
+			  </div>
+ 			 </div>
+			  
+			  <hr>
+					
+			  <!-- Portofolio Containing Image list start -->
+              {% if images %}
+			  <div class="row portfolio-container" style="background-color: #19294873; padding-top: 20px; padding-bottom: 0;border-radius: 10px">
+			  {% for image in images %}
+				<div class="col-lg-6 col-md-6 portfolio-item filter-abstract">
+				  <div class="portfolio-wrap">
+				    {% thumbnail image.image "x400" as img %}
+					<img src="{{ img.url }}" class="img-fluid-gal" alt="">
+                    {% endthumbnail %}					
+					<div class="portfolio-info">
+					  <h4>{{ image.name }}</h4>
+					  <div class="portfolio-links">				   
+						<a href="{{ image.get_absolute_image_url }}" data-gall="portfolioGallery" class="venobox zld-mobico" title="{{ image.name}}"><i class="fa fa-search-plus zld-mob-i"></i></a>
+						{% if image.availability == 'available' or image.availability == 'sold' %}
+						<a href="{% url 'gallery:artwork_details' image.slug %}" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="{{ image.name }} Details"><i class="fa fa-info-circle zld-mob-i"></i></a>
+						{% else %}
+						<div></div>
+						{% endif %}
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  {% endfor %}	
+			  </div> <!-- Portofolio Image List -->			  
+			  
+			  {% else %}
+				<p style="color: #2e76ff; font-size: 24px;"> No Image Uploaded to this ablum yet!</p>
+              {% endif %}
+			  
+				<hr>						
+				
+				<h2 style="font-weight: 700">Similar Albums</h2>
+				{% for album in similar_albums %}
+					<p>
+						<a href="{{ album.get_absolute_url }}">{{ album.title }}</a>
+					</p>
+				{% empty %}
+					There are no similar albums yet.
+				{% endfor %}
+	   </div><!-- End Container -->
+	</section><!-- End Section --> 
+       
+	 </div><!-- End Jumbotron -->
+	</div><!-- End Col-xl -->
+   </div><!-- End Container-text-center -->
+</div><!-- End Body Content -->   
+{% endblock %}

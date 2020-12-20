@@ -1,0 +1,86 @@
+{% load static %}
+
+{% load gallery_tags %}
+
+{% load thumbnail %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Anita Francu Art | Artwork Details</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600&display=swap" rel="stylesheet"> 
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'anitafrancuart/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/css/vhud-artwork-sell.css" %}">
+ 
+</head>
+
+<body class="artwork-sell-body">
+
+  <main id="main">
+
+    <!-- ======= Artwork Details ======= -->
+    <div id="artwork-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-8">
+            <h2 class="portfolio-title">Artwork Profile</h2>
+			{% if album_image %}
+            <div class="owl-carousel portfolio-details-carousel">
+		    {% thumbnail album_image.image "460x500" as img %}
+			<img src="{{ img.url }}" class="img-fluid" alt="{{ album_image.alt }}">
+            {% endthumbnail %}
+            </div>
+			{% endif %}
+          </div>
+
+          <div class="col-lg-4 portfolio-info">
+            <h3>Painting information</h3>
+            <ul class="sell-i-details">
+              <li><strong>Name:</strong> {{ album_image.name }}</li>
+              <li><strong>Artist:</strong> Anita Fraâcu</li>
+              <li><strong>Status:</strong> {{ album_image.availability }}</li>
+              <li><strong>Listing date:</strong> {{ album_image.created }}</li>
+			  <li><strong style="color: #85e3ff;">Price:</strong> <strong style="color: #fff;">{% if album_image.price > 0 %} {{ album_image.price }} € {% else %} not available {% endif %}</strong></li>
+			  <li><strong style="color: #66d3f4;">If interested:</strong> <a class="sell-contact-a" href="{% url 'contactView' %}" target="_top">Contact me</a></li>
+            </ul>
+
+			<div class="artwork-item-description">
+			{% if album_image.description %}
+			<h4>Description: </h4>
+			<p class="album_p_desc">{{ album_image.description }}</p>
+			{% else %}
+			<h4>No description available</h4>
+			{% endif %}
+			</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div><!-- End Portfolio Details -->
+
+  </main><!-- End #main -->
+
+  <div class="bottom-bar">
+    Powered by <a class="vhud-brand" href="#">vhud</a>
+  </div>
+
+</body>
+
+</html>

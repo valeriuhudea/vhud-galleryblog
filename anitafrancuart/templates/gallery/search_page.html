@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+{% load gallery_tags %}
+{% block title %}Anita Francu Art | Search{% endblock %}
+
+{% block content %}
+<div class="body-container text-center gallery-main-div" style="padding-top: 20px;">
+   <div class="container text-center">
+    <div class="col-xl">
+     <div class="jumbotron vertical-center" style="padding: 3px; padding-bottom: 20px;">	  
+	  
+			<section id="portfolio" class="portfolio">
+				<div class="container">
+
+				  <div class="section-title" style="padding-top: 30px;">
+					<h2>Search</h2>
+					<p>Look for Albums &amp; Articles</p>
+				  </div>
+
+				  <div class="row">
+					<div class="col-lg-12 d-flex justify-content-center">
+						{% if query %}
+						<h3 class='my-0 py-0'>{{ count }} results for <b>{{ query }}</b></h3>
+						{% else %}
+						<h3 class='my-0 py-0'>Search for albums and articles now.</b></h3>
+						{% endif %}
+					</div>
+				  </div>
+				  
+				<div class="row" style="margin-left: 0;margin-top: 8%; margin-bottom: 20px;">
+				   <div class="col-lg-12 d-flex justify-content-left">             
+					<form method="GET" class="" action="." style="display: flex;>					
+						<div class="input-group  mx-auto" style="margin: 0; font-size: 36px;">
+						    <div class="mx-auto" style="">
+							<input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter or search" class="" placeholder="Search..." value="" style="margin-top: 4px;" data-original-title="" title="" autofocus="autofocus">
+							</div >
+							<div>
+							<button class="btn-ho effect01" type="submit" style="padding-left: 4px;margin-left: -50%;margin-top: 2px">Search <i class="fa fa-search" aria-hidden="true"></i></button>
+	                        </div>					
+						</div>
+					</form>
+				   </div>
+				</div> 
+                {% if query %}
+				{% for object in object_list %}
+					{% with object|class_name as class %}
+					  {% if class == 'Post' %}
+						   <div class='row' style="text-align: left; margin-left: 30px;">
+							 <div class='col-12'>
+								Article: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+							 </div>
+						   </div>
+						  
+					  {% elif class == 'Album' %}
+						   <div class='row' style="text-align: left; margin-left: 30px;">
+							 <div class='col-12'>
+								Album: <a href='{{ object.get_absolute_url }}'>{{ object.title }}</a>
+							 </div>
+						   </div>
+					  {% endif %}
+						
+				    {% endwith %}
+    
+				{% endfor %}
+				{% endif %}
+
+
+				<ul class="pagination" style="margin-left: 30px;">
+				{% if is_paginated %}
+					{% if page_obj.has_previous %}
+						<li class="page-item">
+							<a class="page-link" href="?{% param_replace page=1 %}">First</a>
+						</li>
+						{% if page_obj.previous_page_number != 1 %}
+							<li class="page-item">
+								<a class="page-link" href="?{% param_replace page=page_obj.previous_page_number %}">Previous</a>
+							</li>
+						{% endif %}
+					{% endif %}
+
+					{% for num in page_obj.paginator.page_range %}
+						{% if page_obj.number == num %}
+							<li class="page-item">
+								<a class="page-link" href="?{% param_replace page=num %}">{{ num }}</a>
+							</li>
+						{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+							<li class="page-item">
+								<a class="page-link" href="?{% param_replace page=num %}">{{ num }}</a>
+							</li>
+						{% endif %}
+					{% endfor%}
+
+					{% if page_obj.has_next %}
+						{% if page_obj.next_page_number != paginator.num_pages %}
+						<li class="page-item">
+							<a class="page-link" href="?{% param_replace page=page_obj.next_page_number %}">Next</a>
+						</li>
+						{% endif %}
+						<li class="page-item">
+							<a class="page-link" href="?{% param_replace page=page_obj.paginator.num_pages %}">Last</a>
+						</li>
+					{% endif %}
+				{% endif %}
+				</ul>	
+             
+			</div> <!-- End Container -->
+		   </section> <!-- End Section -->
+		   
+        </div> <!--jumbotron-->
+    </div> <!--col-xl-gallery-->
+ </div> <!--container text-center-->
+</div><!-- body-container -->
+{% endblock %}

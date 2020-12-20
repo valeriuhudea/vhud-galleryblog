@@ -1,0 +1,1 @@
+web: gunicorn anitafrancuart.wsgi --log-file -

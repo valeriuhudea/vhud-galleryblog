@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="body-container text-center">
+  <div class="container text-center">
+	   <div class="col-xl register">
+
+	   <div class="jumbotron vertical-center my-4" style="padding-left: 26%; padding-right: 26%;">
+	   <a class="navbar-brand" href="{% url "home" %}"><img src="{% static "anitafrancuart/css/aflogo.png" %}" alt="logo" style="padding-bottom: 15px"></a>
+		<form method="post" autocomplete="off" action="{% url "register_page" %}" style="display: grid">
+		
+		{% csrf_token %}
+
+		{% for field in form %}
+		<p>
+		{{ field.label_tag }}<br>
+		{{ field }}
+		  {% if field.help_text %}
+		  <div style="text-align: left; padding-bottom: 10px;">
+			<small style="color: grey">{{ field.help_text }}</small>
+	      </div>
+		  {% endif %}
+          {% for error in field.errors %}
+            <p style="color: #b32e2e">{{ error }}</p>
+           {% endfor %}
+        {% endfor %}
+		</p>
+		 <div class="form-actions">
+			<button class="btn-ho effect01" type="submit" style="padding-left: 4px;margin-left: -50%;margin-top: 2px">Register</button>
+		 </div>
+		</form>
+	   </div>
+	   </div>
+  </div>
+</div> 
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

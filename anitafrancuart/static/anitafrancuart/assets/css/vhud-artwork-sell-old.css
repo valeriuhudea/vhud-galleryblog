@@ -1,0 +1,132 @@
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 300px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background: #000;
+  background-image: url("black-abstract.png");
+}
+
+body > div {
+  /*
+    1/3  - 3 columns per row
+    10px - spacing between columns 
+  */
+  box-sizing: border-box;
+  margin: 10px 10px 0 0;
+  width: 100%
+  background: #46B980;
+  padding: 50px;
+  color: #fff;
+}
+
+h4 {
+	color: #8ae4ff; 
+	font-family: Oleo Script; 
+	text-align:center;
+	font-size: 24px;
+}
+
+h3 {
+	color: #8ae4ff; 
+	font-family: Oleo Script; 
+	text-align: center;
+	font-size: 24px;
+}
+
+.body-sell-container {
+	display: flex; 
+	max-width: 90%; 
+	width: 100%;
+	padding-bottom: 50px;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.artwork-row {
+	display: flex; 
+	padding: 0;
+}
+
+.artwork-title {
+    margin-top: 1%;
+	margin-left: auto;
+	margin-right: auto;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+	text-align: center;
+	position: relative;
+}
+
+.img-fluid-artwork {
+    border-style: ridge;
+	border-color: #ffb30082; /* blue #0070ffe3 */
+    border-image: url('space-border.png') 30 round;
+    border-width: 6px;
+}
+
+.artwork-row {
+	width: 90%;	
+}
+
+.artwork-info {
+	width: 90%;
+	position: relative;
+}
+
+.col-artwork-img {
+	position: relative; 
+	width: 100%;
+	margin-left: 10%
+}
+
+.artwork-info-list {
+	list-style-type: none;
+}
+
+.artwork-info-title {
+	text-align: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 640px) {
+    body {
+	    flex-direction: column;
+    }
+	.artwork-row {
+        flex-direction: column;
+    }
+	.artwork-info-list {
+		flex-direction: column;
+		margin-bottom: 0;
+		position: relative;
+	}
+	.col-artwork-img {
+		margin: 0;
+		position: relative;
+	}
+}
+
+a {
+  color: #18d26e;
+}
+
+a:hover {
+  color: #35e888;
+  text-decoration: none;
+}

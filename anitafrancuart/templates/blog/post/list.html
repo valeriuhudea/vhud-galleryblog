@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+{% load thumbnail %}
+
+{% block title %}Anita Francu's Art Blog{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+<div class="body-container text-center">
+   <div class="container text-center" style="padding-top: 20px;">
+    <div class="col-xl blog">
+	 <div class="jumbotron vertical-center">
+	  <div class="section-title">
+		<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Blog</h2>
+		<p style="text-align:left">My Art Blog</p>
+	  </div>
+    <!-- Blog Post -->
+    {% if tag %}
+        <h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Posts tagged with "<em>{{ tag.name }}</em>"</h2>
+    {% endif %}
+    {% for post in posts %}
+        <div class="card mb-4" id="cardib">
+		    {% thumbnail post.post_image "600x600" as img %}
+			<img src="{{ img.url }}" alt="Card image cap">
+            <!--img class="card-img-top" src="{{ img.url }}" alt="Card image cap" width="750" height="600"-->
+            {% endthumbnail %}
+            <div class="card-body">
+                <h2>
+                    <a href="{{ post.get_absolute_url }}">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                    </a>
+                    <p class="tags" style="font-size: 16px; color: #012988;">
+                        Tags:
+                        {% for tag in post.tags.all %}
+                            <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                                {{ tag.name }}
+                            </a>
+                            {% if not forloop.last %},
+                            {% endif %}
+                        {% endfor %}
+
+                    </p>
+                </h2>
+
+                {#        {{ post.body|truncatewords:30|linebreaks }}#}
+                <p class="blog-body-text">{{ post.body|truncatewords_html:30 }}
+                </p>
+                <a href="{{ post.get_absolute_url }}" class=""><button class="btn-ho effect01">Read &rarr;</button></a>
+            </div>
+            <div class="card-footer text-muted">
+                Published {{ post.publish }} by <strong>{{ post.author }}</strong>
+            </div>
+        </div>
+    {% endfor %}
+    {% include "pagination.html" with page=posts %}
+	  </div>
+	 </div>
+	</div>
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

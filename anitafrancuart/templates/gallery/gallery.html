@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load gallery_tags %}
+{% load thumbnail %}
+{% load active_link_tags %}
+
+{% block title %}Anita Francu's Art Gallery{% endblock %}
+
+{% block content %}
+<div class="body-container text-center gallery-main-div" style="padding-top: 20px;">
+   <div class="container text-center">
+    <div class="col-xl">
+     <div class="jumbotron vertical-center" style="padding: 3px;">	  
+	  
+			<section id="portfolio" class="portfolio">
+				<div class="container gallery-container">
+
+				  <div class="section-title" style="padding-top: 30px;">
+					<h2>Portfolio</h2>
+					<p>My Art &amp; Designs</p>
+				  </div>
+
+				  <div class="row">
+					<div class="col-lg-12 d-flex justify-content-center">
+					  <ul id="portfolio-flters">
+					    <a href="{% url "gallery:gallery_page" %}"><li data-filter="*" class="{% if request.path == '/gallery/' %}activated{% endif %}">All</li></a>
+							{% for tag in tags %}
+								<a href="{% url "gallery:gallery_page_by_tag" tag %}"><li data-filter=".filter" class="{% if tag in request.path %}activated{% endif %}">{{ tag }}</li></a>
+								{% empty %}
+									no other tags
+							{% endfor %}							
+					  </ul>
+					</div>
+				  </div>
+				  
+				{% if tag %}
+					<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Albums tagged with "<em>{{ tag.name }}</em>"</h2>
+				{% endif %}
+				
+
+				{% for album in albums %}
+			    <div class="albums-list">
+					   <a class="album_a_title" href="{{ album.get_absolute_url }}" title="{{ album.title }}"><h2 style="font-family: Allura, cursive; font-size: 48px;font-weight: 300">{{ album.title }}</h2></a>
+						<p class="tags" style="font-size: 16px; color: #8b9295;">	
+						    Tags:
+							{% for tag in album.tags.all %}							     
+								<a href="{% url "gallery:gallery_page_by_tag" tag.slug %}">{{ tag.name }}</a>
+								{% if not forloop.last %},
+								{% endif %}
+							{% empty %}
+							    no tags available
+							{% endfor %}
+						</p>
+				  {% if album.thumbnail %}
+			     <div class="portfolio-wrap" style="display: flex;justify-content: left;">
+					{% thumbnail album.thumbnail "x300" as img %}
+					<img src="{{ img.url }}" class="img-fluid-gallery" alt="{{ album.title }}">
+					{% endthumbnail %}
+					{% else %}
+					<img src="" alt="{{ album.title }}" class="img-fluid-gallery" />
+					{% endif %}
+				   <a href="{{ album.get_absolute_url }}" title="{{ album.title }}">					
+					<div class="portfolio-info">
+					  <h4 class="album-wrap-view" style="">View Album</h4>		  
+					  <div class="portfolio-links">
+
+					  </div>
+					</div>
+				   </a>
+				  
+				  <div class="col-lg-6 col-md-2 portfolio-item" style="padding-top: 8%;padding-left:auto; padding-right: auto;">
+				        {% if album.description %}
+                        <h4 style="color: #8ae4ff; font-family: Oleo Script;">Details: </h4>
+						<p class="album_p_desc" style="margin-right: 10%; margin-left:2%">{{ album.description }}</p>
+						{% else %}
+						<h4 style="color: #8ae4ff; font-family: Oleo Script;">No details</h4>
+						{% endif %}
+				  </div><!-- Album description -->
+                 </div>
+			   </div>
+			   
+			   <hr>
+			   
+			{% endfor %}
+			
+			{% include "pagination.html" with page=albums %}
+			  </div>
+			
+		  </section>
+
+        </div> <!--jumbotron-->
+    </div> <!--col-xl-gallery-->
+ </div> <!--container text-center-->
+</div><!-- body-container -->
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Success - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="body-container text-center" style="padding-top: 20px;">
+    <div class="container text-center">
+		<div class="col-xl contact-block">
+            <div class="jumbotron vertical-center">
+				    <h1></h1>
+                    <p style="font-family: Poppins, sans-serif; color: #D0D0D0;">Success! Thanks for your message!</p>
+            </div>
+		</div>
+	</div>
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

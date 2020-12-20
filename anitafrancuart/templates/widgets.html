@@ -1,0 +1,97 @@
+{% load static %}
+{% load gallery_tags %}
+{% load blog_tags %}
+
+{% block widgets %}
+
+<div class="col-md-4">
+
+ <div class="widget-block">
+			<!-- Weather/Moon Widget -->
+            <div class="card my-4">
+                <h5 class="card-header" style="font-family: Poppins, sans-serif;color: #172d62;text-align:center;font-weight: 700;">Time, Moon & Weather</h5>
+                <div class="card-body">
+					<!-- Clock -->
+					<center style="background-color: ">
+					<iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:227px;height:75px;pointer-events:none;opacity: 0.7;"src="https://www.clocklink.com/html5embed.php?clock=008&timezone=EET&color=black&size=227&Title=&Message=&Target=&From=2019,1,1,0,0,0&Color=black">
+					</iframe>
+					</center>
+						<!-- Moon Phase -->
+						<div class="moon-phase" style="background-color: #040d28ad;padding-bottom: 2px;text-align: center;border-radius: 10px 10px 0 0;">
+						<iframe allowtransparency="yes" scrolling="no" style="border-left: 0; border-right: 0; border-bottom: 0;width:180px; height:283px; overflow: hidden;border-right: 0;margin-bottom: -25px;pointer-events:none;" src="https://in-the-sky.org/widgets/moonphase.php?skin=1"></iframe>
+						</div>
+							<!-- Weather -->	
+							<a class="weatherwidget-io" href="https://forecast7.com/en/45d6625d60/brasov/" data-label_1="BRAȘOV" data-label_2="WEATHER" data-days="5" data-theme="weather_one" style="pointer-events:none;opacity: 0.8;border-radius: 0 0 10px 10px;">BRAȘOV WEATHER</a>
+							<script>
+							!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+							</script>
+                      </div>
+            </div>
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search for albums and articles</h5>
+				   <div class="row" style="margin-top: 8%; margin-bottom: 20px;">
+				   <div class="col-lg-12 d-flex justify-content-center">             
+					<form method="GET" class="" action="{% url "search_page" %}" style="display: flex;>					
+						<div class="input-group  mx-auto" style="margin: 0; font-size: 36px;">
+						    <div class="mx-auto" style="">
+							<input type="text" name="q" data-toggle="popover" data-placement="bottom" data-content="Press enter or search" class="" placeholder="Search..." value="" style="margin-top: 4px;" data-original-title="" title="" autofocus="autofocus">
+							</div >
+							<div>
+							<button class="btn-ho effect01" type="submit" style="padding-left: 4px;margin-left: -50%;margin-top: 2px">Search <i class="fa fa-search" aria-hidden="true"></i></button>
+	                        </div>					
+						</div>
+					</form>
+				   </div>
+            </div>
+
+            <!-- Chess Widgets 
+            <div class="card my-4">
+                <h5 class="card-header">Play chess with me</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+						<iframe src="https://play.chessbase.com" style="width:380px;height:480px"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+			
+			<!-- Latest Widgets -->
+            <div class="card my-4">
+			    <h5 class="card-header" style="font-family: Poppins, sans-serif;color: #172d62;text-align:center;font-weight: 700;">Latest Updates</h5>
+                <div class="card-body" style="margin-left: 4%">
+                    <div class="row d-flex justify-content-left">
+                        <div class="col-lg-8">
+                            <ul class="list-unstyled mb-0" style="padding-left: 10px">
+							    <p>Albums: </p>
+								{% show_latest_albums 3 %}
+								
+								<br>
+								
+								<p>Articles: </p>
+                                {% show_latest_posts 3 %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header" style="font-family: Poppins, sans-serif;color: #172d62;text-align:center;font-weight: 700;">Most commented articles</h5>
+                <div class="card-body">
+                    {% get_most_commented_posts as most_commented_post %}
+                    <ul>
+                        {% for post in most_commented_post %}
+                            <li>
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+</div><!--End Widget Block -->
+</div><!--End Col -->
+{% endblock %}

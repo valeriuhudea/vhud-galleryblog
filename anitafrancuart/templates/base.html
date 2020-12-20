@@ -1,0 +1,103 @@
+{% load blog_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Anita Francu Art{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Anita Francu's Art and Design">
+    <meta name="keywords" content="">
+    
+	
+	<link href="{% static "anitafrancuart/favicon.ico" %}" rel="icon type="image/x-icon">
+    <link href="{% static "anitafrancuart/logo.png" %}" rel="apple-touch-icon">
+	
+    <link rel="stylesheet" href="{% static "anitafrancuart/assets/fonts/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "anitafrancuart/assets/css/best-carousel-slide.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'anitafrancuart/assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+
+	<link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet"> 	
+
+    <!-- Bootstrap Material Design -->	
+	
+	<link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/vendor/bootstrap/css/mdb.min.css" %}">    
+    <link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/fonts/ionicons.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/vendor/icofont/icofont.min.css" %}">
+	
+    <link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/css/vhud-blog.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/css/vhud-base.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "anitafrancuart/assets/vendor/venobox/venobox.css" %}">
+</head>
+<body>
+
+<video autoplay muted loop width="1920" height="1080" id="snowVid">
+  <source src="{% static "anitafrancuart/assets/css/background-sea.mp4" %}" type="video/mp4">
+</video>
+<!-- Navigation -->
+    {% include "navigationafart.html" %}
+
+<header class="card-header masthead my-3">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <div class="site-heading" style="text-align: center;color: #fff">
+                        <h1 style="font-family: 'Blinker', sans-serif;font-size: 38px;font-weight: 700;color: #fff; letter-spacing: 5px;">Anita Frâncu's Art and Design</h1>
+						{% if user.is_authenticated %}
+						<span class="subheading" style="font-weight: 500;">Welcome in: <span style='color: #0070ff;'><strong>{{ user.get_username }}</strong></span>
+						{% else %}
+						<span class="subheading">Welcome! <span style='color: #0070ff;'><strong>{{ user.get_username }}</strong></span>
+						{% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>
+
+	<button onclick="topFunction()" id="back-top-btn" title="Back to top"><i class="fa fa-long-arrow-up" style="font-size: 1.2em;"></i></button>
+
+<div class="container">
+    <div class="row" style="display: flex;">
+
+        <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+		    {% block widgets %}
+            {% endblock %}
+		
+    </div>
+
+{% block footer %}
+{% include "gallery/footer.html" %}
+{% endblock %}
+</div>
+
+{% block onbody_scripts %}
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/jquery/jquery.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/js/mdb.min.js" %}"></script>
+
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/waypoints/jquery.waypoints.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/counterup/counterup.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/owl.carousel/owl.carousel.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/vendor/venobox/venobox.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/js/main.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/js/btnscript.js" %}"></script>
+<script type="application/javascript" src="{% static "anitafrancuart/assets/js/navbar.js" %}"></script>
+{% endblock %}
+
+</body>
+</html>

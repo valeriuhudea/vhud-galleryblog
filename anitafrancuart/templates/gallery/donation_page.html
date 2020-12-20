@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Contributions - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="body-container text-center" style="padding-top: 20px;">
+    <div class="container text-center">
+		<div class="col-xl contact-block">
+            <div class="jumbotron vertical-center" style="text-align: left;">
+					  <div class="section-title">
+						<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Support & Contribution</h2>
+						<p style="text-align:left">Contribute</p>
+					  </div>
+					  <div class="contribution-container">
+					    <p style="text-align: left;">Contributions go solely to the artist fund for project inovation, more art content and any contribution can be placed as a pre-order for custom art designs or paintings.</p>
+						<h1>Support via crypto</h1>						
+						<div class="crypto-wallet-in" style="display: flex;">						
+						<p>Bitcoin: </p>
+						<p id="crypto-wallet-bit">173Zd6H2KigVp32o4KiJ1vVNtDfrhkyHwc<p/><a href="#" onclick="CopyToClipboard('crypto-wallet-bit');return false;"><i class="fa fa-copy"></i></a>
+						</div>
+						
+					    <div class="crypto-wallet-in" style="display: flex; align-items: center; space-between:5px;">						
+						<p>Ethereum: </p>
+						<p id="crypto-wallet-eth">0x02519b2f6370152e90D45B9A840eD7cfEC94EAfA<p/><a href="#" onclick="CopyToClipboard('crypto-wallet-eth');return false;"><i class="fa fa-copy"></i></a>
+						</div>
+											
+						<h1>Support via Paypal</h1>						
+						<div class="paypal-wallet" style="display: flex; flex-direction: column; text-align:left;">						
+                        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anita3333333%40gmail.com&currency_code=USD" target="_blank"><button class="btn-ho effect01">Donate</button></a>
+						</div>
+					  </div>
+            </div>
+		</div>
+	</div>
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

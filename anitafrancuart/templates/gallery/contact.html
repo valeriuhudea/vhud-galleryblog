@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load gallery_tags %}
+{% block title %}Contact - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="body-container text-center" style="padding-top: 20px;">
+	<div class="container text-center">
+    <div class="col-xl contact-block">
+            <div class="jumbotron vertical-center">
+					  <div class="section-title">
+						<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Contact Info</h2>
+						<p style="text-align:left">Contact Me</p>
+					  </div>
+
+					  <div class="row mt-2">
+
+						<div class="col-md-6 d-flex align-items-stretch">
+						  <div class="info-box">
+							<i class="fa fa-home"></i>
+							<h3 style="font-family: Impact, Charcoal, sans-serif;color: #00c3ff;">My Address</h3>
+							<p>Brasov, Romania 500333</p>
+						  </div>
+						</div>
+
+						<div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+						  <div class="info-box">
+							<i class="fa fa-users"></i>
+							<h3 style="font-family: Impact, Charcoal, sans-serif;color: #00c3ff;">Social Profiles</h3>
+							<div class="social-icons" style="padding-right: 40px">
+							  <ul>
+							  <li><a href="https://www.facebook.com/AnitaFrancu333" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a></li>
+							  <li><a href="https://www.instagram.com/anitafrancu.visualarts/" class="instagram" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</div>
+						  </div>
+						</div>
+
+						<div class="col-md-6 mt-4 d-flex align-items-stretch">
+						  <div class="info-box">
+							<i class="fa fa-envelope"></i>
+							<h3 style="font-family: Impact, Charcoal, sans-serif;color: #00c3ff;">Email Me</h3>
+							<a href="mailto:valeriu.hudea@gmail.com"><p>valeriu.hudea@gmail.com</p></a>
+						  </div>
+						</div>
+						<div class="col-md-6 mt-4 d-flex align-items-stretch">
+						  <div class="info-box">
+							<i class="fa fa-phone"></i>
+							<h3 style="font-family: Impact, Charcoal, sans-serif; color: #00c3ff;">Call Me</h3>
+							<a href="tel:+40%20759%20151%20114"><p>+40 759151114</p></a>
+						  </div>
+						</div>
+					  </div>
+					<div style="padding-top: 20px">
+					   <a href="{% url "donation_page" %}"> <button class="btn-ho effect01" style="padding-right: 10px;" type="submit" >Contribute</button></a>
+					   
+					</div>  
+                <div class="contact-form-container info-box" style="display: inline-block; margin-top: 20px;color: #2abfec;">
+					  <div class="section-title">
+						<h2 style="font-family: Poppins, sans-serif; color: #D0D0D0;text-align:left">Contact Form</h2>
+						<p style="text-align:left">Send me a message <i class="fa fa-envelope-o"></i></p>
+					  </div>
+					<form role="form" method="POST" action="{% url "contactView" %}" style="display: grid">
+						{% csrf_token %}
+						{{ form.as_p }}
+					<div class="form-actions" style="">
+						<button class="btn-ho effect01" type="submit" >Submit</button>
+					</div>
+					</form>
+                </div>
+		  </div>
+        </div>
+    </div>
+</div>	
+{% endblock %}
+
+{% block widgets %}
+{% include "widgets.html" %}
+{% endblock %}

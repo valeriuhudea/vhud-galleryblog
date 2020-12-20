@@ -1,0 +1,134 @@
+body {
+  color: #000;
+  background-image: url("sale-room.jpg");
+  background-repeat: no-repeat;
+  font-family: 'Source Serif Pro', serif;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+	text-align: center;
+	margin-bottom: 5%;
+	margin-top: 10px;
+}
+
+.h3, h3 {
+	margin-top: 20%;
+	margin-left: -25%;
+	color: #00c3ff;
+}
+
+.h4, h4 {
+	margin-top: 10%;
+	margin-left: -25%;
+	margin-bottom: 15px;
+	color: #00c3ff;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-style: ridge;
+	border-color: #ffb30082; /* blue #0070ffe3 */
+    border-image: url('space-border.png') 30 round;
+    border-width: 20px;
+}
+
+a {
+  color: #18d26e;
+}
+
+a:hover {
+  color: #35e888;
+  text-decoration: none;
+}
+
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	color: #2d2727;
+	margin: 15px;
+	margin-left: 45%;
+}
+
+.portfolio-title {
+	text-align: right;
+	margin-left: 50%;
+	margin-right: 10%;
+}
+ul.sell-i-details {
+    margin-left: -50%;
+    margin-top: 10%;
+	list-style-position: outside;
+	list-style: none;
+	font-size: 18px;
+	color: #7fedff;
+	
+}
+
+b, strong {
+    font-weight: bolder;
+	color: #000;
+}
+
+li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+a.sell-contact-a {
+	color: #b0b0b0;
+}
+
+a.sell-contact-a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+a.vhud-brand {
+	color: #0d312c;
+}
+
+a.vhud-brand:hover {
+  color: #11423b;
+  text-decoration: none;
+}
+
+p.album_p_desc {
+	margin-left: -40%;
+	color: #c4c2c2;
+}
+
+.artwork-item-description {
+	padding-top: 0;
+	color: #fff;
+}
+
+@media screen and (min-width: 320px) and (max-width: 640px) {
+    .portfolio-title {
+	   text-align: center;
+	   margin-left: 0;
+	   margin-right: 0;
+    }
+	.artwork-sell-body {
+	   background-size: cover;
+	}
+	h3, h4 {
+		text-align: center;
+		margin: 0;
+		margin-top: 10px;
+	}
+	ul.sell-i-details {
+	    margin-left: 0;
+		margin-top: 10px;
+		list-style-position: none;
+		list-style: none;
+		font-size: 18px;
+	}
+	b, strong {
+		font-weight: bolder;
+		color: #8c8c8c;
+	}
+	p.album_p_desc {
+		margin-left: 0;
+	}
+}
