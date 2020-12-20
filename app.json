@@ -1,6 +1,6 @@
 {
-  "name": "Vhud Live",
-  "description": "Live Storage, API Services and Analytics with stats.",
+  "name": "Vhud Live Gallery",
+  "description": "Live blog and gallery with detailed art page for each tagged image.",
   "image": "heroku/python",
   "repository": "https://github.com/valeriuhudea/vhudlive",
   "keywords": ["python", "django" ],
