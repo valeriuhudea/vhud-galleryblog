@@ -128,7 +128,7 @@ class AlbumImage(models.Model):
     
     @property
     def get_absolute_image_url(self):
-        return "{0}{1}".format(settings.STATIC_URL, self.image)
+        return "{0}{1}{2}".format(settings.MEDIA_ROOT, settings.STATIC_URL, self.image)
 
 #    def get_absolute_url(self):
 #        return reverse('gallery:gallery_detail', args=[self.slug])
