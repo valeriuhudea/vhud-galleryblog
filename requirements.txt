@@ -17,7 +17,7 @@ django-imagekit==4.0.2
 django-json-field==0.5.7
 django-material==1.4.3
 django-picklefield==2.1.1
-
+django-heroku
 django-social-share==2.1.0
 django-storages==1.9.1
 django-taggit==1.2.0
