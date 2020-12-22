@@ -1,7 +1,7 @@
 import os
 import environ
 
-#import django_heroku
+import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 location = lambda x: os.path.join(os.path.dirname(os.path.realpath(__file__)), x)
@@ -206,43 +206,45 @@ USE_L10N = True
 
 USE_TZ = True
 
-TEST_LOCAL = False
 
-if TEST_LOCAL:
-    MEDIA_URL = '/media/'
-    #MEDIA_ROOT = 'media'
-    MEDIA_ROOT = location('media')
-    STATIC_URL = '/static/'
-    STATIC_ROOT = location('staticfiles')
-    STATICFILES_DIRS = (location('static'),)
+### Local Settings only ###
+#TEST_LOCAL = False
+#
+#if TEST_LOCAL:
+#    MEDIA_URL = '/media/'
+#    #MEDIA_ROOT = 'media'
+#    MEDIA_ROOT = location('media')
+#    STATIC_URL = '/static/'
+#    STATIC_ROOT = location('staticfiles')
+#    STATICFILES_DIRS = (location('static'),)
 	
 ### AWS S3 Storage for static and media ###
-else:
-    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY', None)
-    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY', None)
-    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', None)
-    AWS_S3_REGION_NAME = os.environ.get('AWS_REGION', None)
+#else:
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_KEY', None)
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_BUCKET_NAME', None)
+AWS_S3_REGION_NAME = os.environ.get('AWS_REGION', None)
 
-    # Tell the S3 custom domain to use to serve static files 
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# Tell the S3 custom domain to use to serve static files 
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-    AWS_DEFAULT_ACL = None #
+AWS_DEFAULT_ACL = None #
 
-    AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000',
-    }
-    AWS_LOCATION = 'static'
+AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+'CacheControl': 'max-age=94608000',
+}
+AWS_LOCATION = 'static'
 
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = 'http://afart-static.s3.amazonaws.com/'
-    MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'http://afart-static.s3.amazonaws.com/'
+MEDIAFILES_LOCATION = 'media'
 
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-    STATICFILES_LOCATION = 'static'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
