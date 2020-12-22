@@ -16,6 +16,8 @@ from django.db.models import Q
 
 #from .custom_storages import MediaStorage
 
+MEDIA_ROOT = 'http://afart-static.s3.amazonaws.com'
+
 User._meta.get_field('email')._unique = True
 
 class VisibleManager(models.Manager):
@@ -128,7 +130,7 @@ class AlbumImage(models.Model):
     
     @property
     def get_absolute_image_url(self):
-        return "{0}{1}{2}".format(settings.MEDIA_ROOT, settings.STATIC_URL, self.image)
+        return "{0}{1}{2}".format(MEDIA_ROOT, settings.STATIC_URL, self.image)
 
 #    def get_absolute_url(self):
 #        return reverse('gallery:gallery_detail', args=[self.slug])
