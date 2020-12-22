@@ -27,13 +27,13 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 INSTALLED_APPS = [
     'gallery',
-	'blog',
+    'blog',
     'crispy_forms',
-	'taggit',
-	'active_link',	
+    'taggit',
+    'active_link',	
     'storages',
     'rest_framework',
-	'sorl.thumbnail',
+    'sorl.thumbnail',
     'rest_framework.authtoken',
     'djoser',
     'django.contrib.sitemaps',
